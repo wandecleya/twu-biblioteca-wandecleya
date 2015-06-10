@@ -17,7 +17,6 @@ public class InteractionsTest {
     @Before
     public void setUp() throws Exception {
         System.setOut(new PrintStream(output, true, "UTF-8"));
-
     }
 
 
@@ -32,7 +31,7 @@ public class InteractionsTest {
     public void testMenu() {
 
         interactions.menu();
-        assertEquals("MENU\n[0]Quit\n[1]Books List\n", output.toString());
+        assertEquals("MENU\n[0]Quit\n[1]Books List\n[2]Check out\n", output.toString());
     }
 
     @Test
@@ -47,11 +46,19 @@ public class InteractionsTest {
         assertEquals("Select a valid option!\n", output.toString());
     }
 
+    @Test
+    public void testCheckOutMessage(){
+        interactions.checkOutMessage();
+
+        assertEquals("What is the title of the book?\n", output.toString());
+    }
+
 
 
     @After
     public void tearDown() throws Exception {
         System.setOut(stdout);
+
     }
 
 
