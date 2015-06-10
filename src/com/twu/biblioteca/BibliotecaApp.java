@@ -21,8 +21,6 @@ public class BibliotecaApp {
             interactions.selector(option);
 
 
-
-
         } while((option != 0));
 
 

@@ -19,12 +19,45 @@ public class Books {
     public void print(){
 
         for(Book each: books){
-            System.out.printf("%-20s%-20s%s\n",each.getTitle(), each.getAuthor(), each.getYear());
+            if(each.isAvailable()){
+                System.out.printf("%-20s%-20s%s\n",each.getTitle(), each.getAuthor(), each.getYear());
+            }
+
         }
 
 
 
     }
+
+    public boolean checkOut(String title){
+        if(isThere(title)){
+            findBook(title).setAvailable(false);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isThere(String title){
+        for(Book each: books){
+            if(each.getTitle().equals(title)){
+                return true;
+
+            }
+        }
+        return false;
+    }
+
+    public Book findBook(String title){
+        for(Book each: books){
+            if(each.getTitle().equals(title)){
+                return each;
+
+            }
+        }
+        return null;
+    }
+
+
 
 
 }

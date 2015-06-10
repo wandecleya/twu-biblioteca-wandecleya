@@ -47,6 +47,8 @@ public class InteractionsTest {
         assertEquals("Select a valid option!\n", output.toString());
     }
 
+
+
     @After
     public void tearDown() throws Exception {
         System.setOut(stdout);
