@@ -57,6 +57,16 @@ public class Books {
         return null;
     }
 
+    public boolean returnBook(String title){
+        if(isThere(title)){
+            findBook(title).setAvailable(true);
+            return true;
+        }
+
+        return false;
+    }
+
+
 
 
 

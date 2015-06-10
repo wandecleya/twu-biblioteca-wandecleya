@@ -53,6 +53,12 @@ public class BooksTest {
 
     }
 
+    @Test
+    public void testReturnBook(){
+        books.checkOut("Bible");
+        assertTrue(books.returnBook("Bible"));
+        assertFalse(books.returnBook("Book of Mormon"));
+    }
 
     @After
     public void tearDown() throws Exception {
