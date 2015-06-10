@@ -7,23 +7,23 @@ import java.util.List;
  * Created by wmartins on 6/8/15.
  */
 public class Books {
-    List<String> books;
+    List<Book> books;
 
     public Books(){
-        books = new LinkedList<String>();
-        books.add("Bible");
-        books.add("Neuromancer");
+        books = new LinkedList<Book>();
+        books.add(new Book ("Bible","Jesus","0"));
+        books.add(new Book ("Neuromancer","Willian Gibson","1980"));
 
     }
 
-    public String showList(){
-        String result = "";
-        for(String each: books){
-            result = result + each + "\n";
+    public void print(){
+
+        for(Book each: books){
+            System.out.printf("%-20s%-20s%s\n",each.getTitle(), each.getAuthor(), each.getYear());
         }
 
 
-        return result;
+
     }
 
 
