@@ -13,9 +13,6 @@ public class BibliotecaApp {
         interactions.welcome("Welcome to biblioteca");
 
 
-
-
-
         int option;
 
         do{

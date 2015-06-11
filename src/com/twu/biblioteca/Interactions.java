@@ -22,7 +22,7 @@ public class Interactions {
     }
 
     public void menu (){
-        String result = "MENU\n[0]Quit\n[1]Books List\n[2]CheckOut Book\n[3]Return book\n[4]Movies List\n[5]CheckOut Movie";
+        String result = "MENU\n[0]Quit\n[1]Books List\n[2]CheckOut Book\n[3]Return book\n[4]Movies List\n[5]CheckOut Movie\n[6]Return Movie";
         System.out.println(result);
     }
 
@@ -34,25 +34,30 @@ public class Interactions {
                 break;
             case 2: checkOutInteraction(books, "book");
                 break;
-            case 3: returnBookInteraction();
+            case 3: returnInteraction(books, "book");
                 break;
             case 4: movies.print();
                 break;
             case 5: checkOutInteraction(movies, "movie");
+                break;
+            case 6: returnInteraction(movies, "movie");
                 break;
             default: System.out.println("Select a valid option!");
 
         }
     }
 
-    public void returnBookInteraction (){
+    public void returnInteraction (Collection item, String type){
         checkOutMessage();
         String name = in.next();
-        if(books.returnItem(name)){
-            System.out.println("Thank you for returning the book.");
+        if(item.returnItem(name)){
+            System.out.println("Thank you for returning the " + type);
         }
-        System.out.println("That is not a valid book to return.");
+        else {
+            System.out.println("That is not a valid " + type + " to return.");
+        }
     }
+
     public void checkOutMessage(){
         String result = "What is the title?";
         System.out.println(result);

@@ -31,7 +31,7 @@ public class InteractionsTest {
     public void testMenu() {
 
         interactions.menu();
-        assertEquals("MENU\n[0]Quit\n[1]Books List\n[2]CheckOut Book\n[3]Return book\n[4]Movies List\n[5]CheckOut Movie\n", output.toString());
+        assertEquals("MENU\n[0]Quit\n[1]Books List\n[2]CheckOut Book\n[3]Return book\n[4]Movies List\n[5]CheckOut Movie\n[6]Return Movie\n", output.toString());
     }
 
     @Test
