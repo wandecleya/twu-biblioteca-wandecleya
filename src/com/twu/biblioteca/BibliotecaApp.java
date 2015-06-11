@@ -7,9 +7,12 @@ public class BibliotecaApp {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+
+
         Interactions interactions = new Interactions();
         interactions.welcome("Welcome to biblioteca");
-        BooksCollection books = new BooksCollection();
+
+
 
 
 

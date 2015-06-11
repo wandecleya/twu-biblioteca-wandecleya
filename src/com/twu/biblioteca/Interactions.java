@@ -8,8 +8,12 @@ import java.util.Scanner;
 public class Interactions {
 
     Scanner in = new Scanner(System.in);
+
     BooksCollection books = new BooksCollection();
-    MoviesCollection movie = new MoviesCollection();
+    MoviesCollection movies = new MoviesCollection();
+
+
+
 
     public void welcome(String message){
         String result;
@@ -18,7 +22,7 @@ public class Interactions {
     }
 
     public void menu (){
-        String result = "MENU\n[0]Quit\n[1]Books List\n[2]Check out\n[3]Return book\n[4]Movies List";
+        String result = "MENU\n[0]Quit\n[1]Books List\n[2]CheckOut Book\n[3]Return book\n[4]Movies List\n[5]CheckOut Movie";
         System.out.println(result);
     }
 
@@ -28,11 +32,13 @@ public class Interactions {
                 break;
             case 1: books.print();
                 break;
-            case 2: checkOutInteraction();
+            case 2: checkOutBook();
                 break;
             case 3: returnBookInteraction();
                 break;
-            case 4: movie.print();
+            case 4: movies.print();
+                break;
+            case 5: checkOutMovie();
                 break;
             default: System.out.println("Select a valid option!");
 
@@ -42,28 +48,38 @@ public class Interactions {
     public void returnBookInteraction (){
         checkOutMessage();
         String name = in.next();
-        if(books.returnBook(name)){
+        if(books.returnItem(name)){
             System.out.println("Thank you for returning the book.");
         }
         System.out.println("That is not a valid book to return.");
     }
     public void checkOutMessage(){
-        String result = "What is the title of the book?";
+        String result = "What is the title?";
         System.out.println(result);
     }
 
 
-    public void checkOutInteraction(){
+    public void checkOutMovie(){
         checkOutMessage();
-        String name = in.next();
+        String name = in.nextLine();
+        if(movies.checkOut(name)){
+            System.out.println("Thank you! Enjoy the movie");
+        }
+        else{
+                  System.out.println("That movie is not available");
+        }
+    }
+
+    public void checkOutBook(){
+        checkOutMessage();
+        String name = in.nextLine();
         if(books.checkOut(name)){
             System.out.println("Thank you! Enjoy the book");
         }
         else{
-                  System.out.println("That book is not available");
+            System.out.println("That book is not available");
         }
     }
-
 
 
 }

@@ -31,7 +31,7 @@ public class InteractionsTest {
     public void testMenu() {
 
         interactions.menu();
-        assertEquals("MENU\n[0]Quit\n[1]Books List\n[2]Check out\n[3]Return book\n[4]Movies List\n", output.toString());
+        assertEquals("MENU\n[0]Quit\n[1]Books List\n[2]CheckOut Book\n[3]Return book\n[4]Movies List\n[5]CheckOut Movie\n", output.toString());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class InteractionsTest {
 
     @Test
     public void testSelectorInvalid(){
-        interactions.selector(5);
+        interactions.selector(9);
         assertEquals("Select a valid option!\n", output.toString());
     }
 
@@ -50,7 +50,7 @@ public class InteractionsTest {
     public void testCheckOutMessage(){
         interactions.checkOutMessage();
 
-        assertEquals("What is the title of the book?\n", output.toString());
+        assertEquals("What is the title?\n", output.toString());
     }
 
 

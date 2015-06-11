@@ -35,7 +35,7 @@ public class Collection {
         return items.get(title);
     }
 
-    public boolean returnBook(String title){
+    public boolean returnItem(String title){
         if(isThere(title)){
             findItem(title).setAvailable(true);
             return true;
