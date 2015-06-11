@@ -18,7 +18,7 @@ public class Books extends Collection {
 
 
 
-        for(Map.Entry<String, Object> each: super.items.entrySet() ){
+        for(Map.Entry<String, Item> each: super.items.entrySet() ){
             Book book = (Book) each.getValue();
             if(book.isAvailable()){
                 System.out.printf("%-20s%-20s%s\n", book.getTitle(), book.getAuthor(), book.getYear());
@@ -30,34 +30,6 @@ public class Books extends Collection {
 
     }
 
-    public boolean checkOut(String title){
-        if(isThere(title)){
-            findBook(title).setAvailable(false);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isThere(String title){
-        if(super.items.containsKey(title)){
-            return true;
-        }
-        return false;
-    }
-
-    public Book findBook(String title){
-        Book book = (Book) super.items.get(title);
-        return book;
-    }
-
-    public boolean returnBook(String title){
-        if(isThere(title)){
-            findBook(title).setAvailable(true);
-            return true;
-        }
-
-        return false;
-    }
 
 
 

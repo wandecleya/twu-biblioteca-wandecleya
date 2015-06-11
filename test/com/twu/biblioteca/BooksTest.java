@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,9 +7,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created by wmartins on 6/9/15.
@@ -33,32 +30,7 @@ public class BooksTest {
 
     }
 
-    @Test
-    public void testIsThere(){
-       assertTrue(books.isThere("Bible"));
 
-        assertFalse(books.isThere("Book of Mormon"));
-    }
-
-    @Test
-    public void testFindBook(){
-        Assert.assertEquals("Jesus", books.findBook("Bible").getAuthor());
-    }
-
-
-    @Test
-    public void testCheckOut(){
-        assertTrue(books.checkOut("Bible"));
-        assertFalse(books.checkOut("Book of Mormon"));
-
-    }
-
-    @Test
-    public void testReturnBook(){
-        books.checkOut("Bible");
-        assertTrue(books.returnBook("Bible"));
-        assertFalse(books.returnBook("Book of Mormon"));
-    }
 
     @After
     public void tearDown() throws Exception {
