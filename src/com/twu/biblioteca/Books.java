@@ -1,26 +1,27 @@
 package com.twu.biblioteca;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by wmartins on 6/8/15.
  */
-public class Books {
-    List<Book> books;
+public class Books extends Collection {
+
 
     public Books(){
-        books = new LinkedList<Book>();
-        books.add(new Book ("Bible","Jesus","0"));
-        books.add(new Book ("Neuromancer","Willian Gibson","1980"));
-
+        super();
+        super.items.put("Bible", new Book ("Bible","Jesus","0"));
+        super.items.put("Neuromancer", new Book ("Neuromancer","Willian Gibson","1980"));
     }
 
     public void print(){
 
-        for(Book each: books){
-            if(each.isAvailable()){
-                System.out.printf("%-20s%-20s%s\n",each.getTitle(), each.getAuthor(), each.getYear());
+
+
+        for(Map.Entry<String, Object> each: super.items.entrySet() ){
+            Book book = (Book) each.getValue();
+            if(book.isAvailable()){
+                System.out.printf("%-20s%-20s%s\n", book.getTitle(), book.getAuthor(), book.getYear());
             }
 
         }
@@ -38,23 +39,15 @@ public class Books {
     }
 
     public boolean isThere(String title){
-        for(Book each: books){
-            if(each.getTitle().equals(title)){
-                return true;
-
-            }
+        if(super.items.containsKey(title)){
+            return true;
         }
         return false;
     }
 
     public Book findBook(String title){
-        for(Book each: books){
-            if(each.getTitle().equals(title)){
-                return each;
-
-            }
-        }
-        return null;
+        Book book = (Book) super.items.get(title);
+        return book;
     }
 
     public boolean returnBook(String title){
