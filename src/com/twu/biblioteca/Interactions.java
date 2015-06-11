@@ -32,13 +32,13 @@ public class Interactions {
                 break;
             case 1: books.print();
                 break;
-            case 2: checkOutBook();
+            case 2: checkOutInteraction(books, "book");
                 break;
             case 3: returnBookInteraction();
                 break;
             case 4: movies.print();
                 break;
-            case 5: checkOutMovie();
+            case 5: checkOutInteraction(movies, "movie");
                 break;
             default: System.out.println("Select a valid option!");
 
@@ -59,27 +59,17 @@ public class Interactions {
     }
 
 
-    public void checkOutMovie(){
+    public void checkOutInteraction(Collection item, String type){
         checkOutMessage();
         String name = in.nextLine();
-        if(movies.checkOut(name)){
-            System.out.println("Thank you! Enjoy the movie");
+        if(item.checkOut(name)){
+            System.out.println("Thank you! Enjoy the " + type);
         }
         else{
-                  System.out.println("That movie is not available");
+            System.out.println("That " + type + " is not available");
         }
     }
 
-    public void checkOutBook(){
-        checkOutMessage();
-        String name = in.nextLine();
-        if(books.checkOut(name)){
-            System.out.println("Thank you! Enjoy the book");
-        }
-        else{
-            System.out.println("That book is not available");
-        }
-    }
 
 
 }
