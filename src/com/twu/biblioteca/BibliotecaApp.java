@@ -9,7 +9,7 @@ public class BibliotecaApp {
         Scanner in = new Scanner(System.in);
         Interactions interactions = new Interactions();
         interactions.welcome("Welcome to biblioteca");
-        Books books = new Books();
+        BooksCollection books = new BooksCollection();
 
 
 

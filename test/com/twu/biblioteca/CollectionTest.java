@@ -17,13 +17,13 @@ import static junit.framework.TestCase.assertTrue;
 public class CollectionTest {
     final PrintStream stdout = System.out;
     final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    Books books = new Books();
+    BooksCollection books = new BooksCollection();
+
     @Before
     public void setUp() throws Exception {
         System.setOut(new PrintStream(output, true, "UTF-8"));
 
     }
-
 
 
     @Test

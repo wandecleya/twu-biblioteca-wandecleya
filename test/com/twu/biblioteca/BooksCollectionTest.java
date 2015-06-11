@@ -12,10 +12,10 @@ import static junit.framework.TestCase.assertEquals;
 /**
  * Created by wmartins on 6/9/15.
  */
-public class BooksTest {
+public class BooksCollectionTest {
     final PrintStream stdout = System.out;
     final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    Books books = new Books();
+    BooksCollection books = new BooksCollection();
     @Before
     public void setUp() throws Exception {
         System.setOut(new PrintStream(output, true, "UTF-8"));

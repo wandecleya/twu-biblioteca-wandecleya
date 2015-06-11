@@ -8,7 +8,8 @@ import java.util.Scanner;
 public class Interactions {
 
     Scanner in = new Scanner(System.in);
-    Books books = new Books();
+    BooksCollection books = new BooksCollection();
+    MoviesCollection movie = new MoviesCollection();
 
     public void welcome(String message){
         String result;
@@ -17,7 +18,7 @@ public class Interactions {
     }
 
     public void menu (){
-        String result = "MENU\n[0]Quit\n[1]Books List\n[2]Check out\n[3]Return book";
+        String result = "MENU\n[0]Quit\n[1]Books List\n[2]Check out\n[3]Return book\n[4]Movies List";
         System.out.println(result);
     }
 
@@ -30,6 +31,8 @@ public class Interactions {
             case 2: checkOutInteraction();
                 break;
             case 3: returnBookInteraction();
+                break;
+            case 4: movie.print();
                 break;
             default: System.out.println("Select a valid option!");
 
