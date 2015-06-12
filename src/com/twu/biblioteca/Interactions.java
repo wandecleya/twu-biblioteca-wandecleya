@@ -9,10 +9,20 @@ public class Interactions {
 
     Scanner in = new Scanner(System.in);
 
-    BooksCollection books = new BooksCollection();
-    MoviesCollection movies = new MoviesCollection();
+    BooksCollection books;
+    MoviesCollection movies;
+    Users users;
+    User current;
 
 
+    public Interactions (BooksCollection books, MoviesCollection movies, Users users){
+        this.books = books;
+        this.movies = movies;
+        this.users = users;
+    }
+
+    private final String MOVIE = "movie";
+    private final String BOOK = "book";
 
 
     public void welcome(String message){
@@ -21,26 +31,98 @@ public class Interactions {
         System.out.print(result);
     }
 
+
+
+    public void login(){
+        String textNumber = "Type your library number";
+        String textPassword = "Type your password";
+        String textNotFound = "User not existent";
+        String textWrongPassword = "Wrong Password";
+
+
+        System.out.println(textNumber);
+        String number = in.next();
+
+        if(users.isThere(number)){
+
+
+            System.out.println(textPassword);
+            String password = in.next();
+            User user = users.findUser(number);
+
+            if(user.checkPassword(password)){
+                current = users.findUser(number);
+                int option;
+
+                do{
+                    menuUser();
+                    option = in.nextInt();
+                    selectorMenuUser(option);
+
+
+                } while((option != 7));
+
+            }
+            else{
+                System.out.println(textWrongPassword);
+
+            }
+        }
+        else {
+            System.out.println(textNotFound);
+
+        }
+
+
+
+
+    }
+
     public void menu (){
-        String result = "MENU\n[0]Quit\n[1]Books List\n[2]CheckOut Book\n[3]Return book\n[4]Movies List\n[5]CheckOut Movie\n[6]Return Movie";
+        String result = "MENU\n[1]Books List\n[2]Movies List\n[3]Login\n[4]Quit";
         System.out.println(result);
     }
 
-    public void selector(int option){
+    public void menuUser(){
+        String result= "USER MENU\n[1]Books List\n[2]Movies List\n[3]CheckOut Book\n[4]Return book\n[5]CheckOut Movie\n[6]Return Movie\n[7]Logout";
+
+        System.out.println(result);
+    }
+
+    public void logout(){
+        current = null;
+    }
+
+    public void selectorMenu(int option){
         switch (option){
-            case 0: System.out.println("Thank you, bye!");
-                break;
             case 1: books.print();
                 break;
-            case 2: checkOutInteraction(books, "book");
+            case 2: movies.print();
                 break;
-            case 3: returnInteraction(books, "book");
+            case 3: login();
                 break;
-            case 4: movies.print();
+            case 4: System.out.println("Thank you, bye!");
                 break;
-            case 5: checkOutInteraction(movies, "movie");
+            default: System.out.println("Select a valid option!");
+
+        }
+    }
+
+    public void selectorMenuUser(int option){
+        switch (option){
+            case 1: books.print();
                 break;
-            case 6: returnInteraction(movies, "movie");
+            case 2: movies.print();
+                break;
+            case 3: checkOutInteraction(books, BOOK);
+                break;
+            case 4: returnInteraction(books, BOOK);
+                break;
+            case 5: checkOutInteraction(movies, MOVIE);
+                break;
+            case 6: returnInteraction(movies, MOVIE);
+                break;
+            case 7: logout();
                 break;
             default: System.out.println("Select a valid option!");
 
@@ -66,6 +148,7 @@ public class Interactions {
 
     public void checkOutInteraction(Collection item, String type){
         checkOutMessage();
+        in.nextLine();
         String name = in.nextLine();
         if(item.checkOut(name)){
             System.out.println("Thank you! Enjoy the " + type);
