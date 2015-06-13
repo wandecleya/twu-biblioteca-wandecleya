@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +7,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
@@ -17,6 +17,7 @@ import static junit.framework.TestCase.assertTrue;
 public class CollectionTest {
     final PrintStream stdout = System.out;
     final ByteArrayOutputStream output = new ByteArrayOutputStream();
+
     Users users = new Users();
     BooksCollection books = new BooksCollection(users.getLibrary());
     User current = users.findUser("123-4567");
@@ -37,7 +38,7 @@ public class CollectionTest {
 
     @Test
     public void testFindBook(){
-        Assert.assertEquals("Jesus", books.findItem("Bible").getAuthor());
+        assertEquals("Jesus", books.findItem("Bible").getAuthor());
     }
 
 

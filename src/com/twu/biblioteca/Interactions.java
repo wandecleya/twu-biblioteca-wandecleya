@@ -12,61 +12,88 @@ public class Interactions {
     BooksCollection books;
     MoviesCollection movies;
     Users users;
-    User current;//Represents the user currently logged in
-    User library;
+
+    User currentUser;//Represents the user currently logged in
+    User libraryUser;//This user represents the Biblioteca
 
     private final String MOVIE = "movie";
     private final String BOOK = "book";
+
     private final String NORMAL = "Normal";
-    private final String LIBRARIAN = "Librarian";
 
+    public final String WELCOME = "*Welcome to Biblioteca*";
 
+    private final String REGISTRATION = "Type your registration number:";
+    private final String PASSWORD = "Type your password:";
+    private final String NOTFOUND = "User not existent";
+    private final String WRONGPASSWORD = "Wrong Password";
+    private final String INVALIDOPTION = "Select a valid option!";
+    private final String EXIT= "Thank you, bye!";
+    private final String ASKTITLE= "What is the title?";
+
+    public final String MAINMENU = "MENU\n" +
+            "[1]Books List\n" +
+            "[2]Movies List\n" +
+            "[3]Login\n" +
+            "[4]Quit\n";
+
+    public final String LIBRARIANMENU = "LIBRARIAN MENU\n" +
+            "[1]Books List\n" +
+            "[2]Movies List\n" +
+            "[3]CheckOut Book\n" +
+            "[4]Return book\n" +
+            "[5]CheckOut Movie\n" +
+            "[6]Return Movie\n" +
+            "[7]Movie Details\n" +
+            "[8]Book Details\n" +
+            "[9]Logout\n";
+
+    public final String USERMENU = "USER MENU\n" +
+            "[1]Books List\n" +
+            "[2]Movies List\n" +
+            "[3]CheckOut Book\n" +
+            "[4]Return book\n" +
+            "[5]CheckOut Movie\n" +
+            "[6]Return Movie\n" +
+            "[7]My Profile\n" +
+            "[8]Logout";
 
     public Interactions (BooksCollection books, MoviesCollection movies, Users users){
         this.books = books;
         this.movies = movies;
         this.users = users;
-        this.current = null;
-        library = users.getLibrary();
+        this.currentUser = null;
+        libraryUser = users.getLibrary();
     }
 
 
-    public void welcome(String message){
-        String result;
-        result = "*" + message.toUpperCase() + "*\n";
-        System.out.print(result);
+    public void welcome(){
+        System.out.println(WELCOME.toUpperCase() + "\n");
     }
-
-
 
     public void login(){
-        String textNumber = "Type your library number";
-        String textPassword = "Type your password";
-        String textNotFound = "User not existent";
-        String textWrongPassword = "Wrong Password";
 
-
-        System.out.println(textNumber);
+        System.out.println(REGISTRATION);
         String number = in.next();
 
         //Check if user has a valid registration number
         if(users.isThere(number)){
 
-
-            System.out.println(textPassword);
+            System.out.println(PASSWORD);
             String password = in.next();
             User user = users.findUser(number);
 
             //Check if user entered a valid password
             if(user.checkPassword(password)){
-                current = users.findUser(number);
+                currentUser = users.findUser(number);
                 int option;
 
                 //Shows the Menu for logged users
                 //Regular User
-                if(current.getType().equals(NORMAL)) {
+                if(currentUser.getType().equals(NORMAL)) {
                     do {
-                        menuUser();
+
+                        System.out.println(USERMENU);
                         option = in.nextInt();
                         selectorMenuUser(option);
 
@@ -76,10 +103,9 @@ public class Interactions {
                 //Librarian
                 else{
                     do {
-                        menuLibrarian();
+                        System.out.println(LIBRARIANMENU);
                         option = in.nextInt();
                         selectorMenuLibrarian(option);
-
 
                     } while ((option != 9));
                 }
@@ -87,60 +113,44 @@ public class Interactions {
             }
             //Wrong Password
             else{
-                System.out.println(textWrongPassword);
+                System.out.println(WRONGPASSWORD);
 
             }
         }
         //Invalid Registration number
         else {
-            System.out.println(textNotFound);
+            System.out.println(NOTFOUND);
 
         }
 
-
-
-
     }
 
-    public void mainMenu (){
-        String result = "MENU\n[1]Books List\n[2]Movies List\n[3]Login\n[4]Quit";
-        System.out.println(result);
-    }
 
-    public void menuUser(){
-        String result= "USER MENU\n[1]Books List\n[2]Movies List\n[3]CheckOut Book\n[4]Return book\n[5]CheckOut Movie\n[6]Return Movie\n[7]My Profile\n[8]Logout";
-        System.out.println(result);
-    }
-
-    public void menuLibrarian(){
-        String result= "LIBRARIAN MENU\n[1]Books List\n[2]Movies List\n[3]CheckOut Book\n[4]Return book\n[5]CheckOut Movie\n[6]Return Movie\n[7]Movie Details\n[8]Book Details\n[9]Logout";
-        System.out.println(result);
-    }
 
     public void logout(){
-        current = null;
+        currentUser = null;
     }
 
     public void selectorMenu(int option){
         switch (option){
-            case 1: books.print();
+            case 1: System.out.println(books.toString());
                 break;
-            case 2: movies.print();
+            case 2: System.out.println(movies.toString());
                 break;
             case 3: login();
                 break;
-            case 4: System.out.println("Thank you, bye!");
+            case 4: System.out.println(EXIT);
                 break;
-            default: System.out.println("Select a valid option!");
+            default: System.out.println(INVALIDOPTION);
 
         }
     }
 
     public void selectorMenuUser(int option){
         switch (option){
-            case 1: books.print();
+            case 1: System.out.println(books.toString());
                 break;
-            case 2: movies.print();
+            case 2: System.out.println(movies.toString());
                 break;
             case 3: checkOutInteraction(books, BOOK);
                 break;
@@ -150,20 +160,20 @@ public class Interactions {
                 break;
             case 6: returnInteraction(movies, MOVIE);
                 break;
-            case 7: System.out.println(current.toString());
+            case 7: System.out.println(currentUser.toString());
                 break;
             case 8: logout();
                 break;
-            default: System.out.println("Select a valid option!");
+            default: System.out.println(INVALIDOPTION);
 
         }
     }
 
     public void selectorMenuLibrarian(int option){
         switch (option){
-            case 1: books.print();
+            case 1: System.out.println(movies.toString());
                 break;
-            case 2: movies.print();
+            case 2: System.out.println(movies.toString());
                 break;
             case 3: checkOutInteraction(books, BOOK);
                 break;
@@ -179,27 +189,30 @@ public class Interactions {
                 break;
             case 9: logout();
                 break;
-            default: System.out.println("Select a valid option!");
+            default: System.out.println(INVALIDOPTION);
 
         }
     }
 
     public void showInteraction(Collection item){
-        questionMessage();
+
+        System.out.println(ASKTITLE);
         in.nextLine();
         String name = in.nextLine();
 
-        String details = item.findItem(name).toString();
+        String itemDetails = item.findItem(name).toString();
 
-        System.out.println(details);
+        System.out.println(itemDetails);
 
     }
+
     public void returnInteraction (Collection item, String type){
-        questionMessage();
+
+        System.out.println(ASKTITLE);
         in.nextLine();
         String name = in.nextLine();
 
-        if(item.returnItem(name, library)){
+        if(item.returnItem(name, libraryUser)){
             System.out.println("Thank you for returning the " + type);
         }
         else {
@@ -207,17 +220,15 @@ public class Interactions {
         }
     }
 
-    public void questionMessage(){
-        String result = "What is the title?";
-        System.out.println(result);
-    }
 
 
     public void checkOutInteraction(Collection item, String type){
-        questionMessage();
+
+        System.out.println(ASKTITLE);
         in.nextLine();
         String name = in.nextLine();
-        if(item.checkOut(name, current)){
+
+        if(item.checkOut(name, currentUser)){
             System.out.println("Thank you! Enjoy the " + type);
         }
         else{

@@ -14,18 +14,18 @@ public class BooksCollection extends Collection {
         super.items.put("Neuromancer", new Book ("Neuromancer","Willian Gibson","1980", owner));
     }
 
-    public void print(){
-
+    public String toString(){
+        String formatted = "";
 
         for(Map.Entry<String, Item> each: super.items.entrySet() ){
             Book book = (Book) each.getValue();
             if(book.isAvailable()){
-                System.out.printf("%-20s%-20s%s\n", book.getTitle(), book.getAuthor(), book.getYear());
+                formatted += String.format("%-20s%-20s%s\n", book.getTitle(), book.getAuthor(), book.getYear());
             }
 
         }
 
-
+        return formatted;
 
     }
 

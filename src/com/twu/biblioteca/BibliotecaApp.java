@@ -7,32 +7,23 @@ public class BibliotecaApp {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+
         Users users = new Users();
         BooksCollection books = new BooksCollection(users.getLibrary());
         MoviesCollection movies = new MoviesCollection(users.getLibrary());
 
         Interactions interactions = new Interactions(books, movies, users);
-        interactions.welcome("Welcome to biblioteca");
+        interactions.welcome();
 
         int option;
 
         do{
-            interactions.mainMenu();
+            System.out.println(interactions.MAINMENU);
             option = in.nextInt();
             interactions.selectorMenu(option);
 
 
         } while((option != 4));
-
-
-
-
-
-
-
-
-
-
 
     }
 

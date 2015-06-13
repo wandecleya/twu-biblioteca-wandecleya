@@ -29,20 +29,12 @@ public class InteractionsTest {
 
     @Test
     public void testWelcome() {
-        interactions.welcome("welcome to the biblioteca");
-        assertEquals("*WELCOME TO THE BIBLIOTECA*\n", output.toString());
+        interactions.welcome();
+        assertEquals(interactions.WELCOME, output.toString());
     }
 
-    @Test
-    public void testMenuUser(){
-        interactions.menuUser();
-        assertEquals("USER MENU\n[1]Books List\n[2]Movies List\n[3]CheckOut Book\n[4]Return book\n[5]CheckOut Movie\n[6]Return Movie\n[7]My Profile\n[8]Logout\n", output.toString());
-    }
-    @Test
-    public void testMenu(){
-        interactions.mainMenu();
-        assertEquals("MENU\n[1]Books List\n[2]Movies List\n[3]Login\n[4]Quit\n", output.toString());
-    }
+
+
 
     @Test
     public void testSelectorQuit() {
@@ -64,12 +56,7 @@ public class InteractionsTest {
 
 
 
-    @Test
-    public void testQuestionMessage(){
-        interactions.questionMessage();
 
-        assertEquals("What is the title?\n", output.toString());
-    }
 
 
 

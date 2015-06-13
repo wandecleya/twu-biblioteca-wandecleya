@@ -15,15 +15,17 @@ public class MoviesCollection extends Collection {
         super.items.put("Fight Club", new Movie("Fight Club", "David Fincher", "1999", owner));
     }
 
-    public void print(){
-        for(Map.Entry<String, Item> each: super.items.entrySet() ){
-            Movie movie = (Movie) each.getValue();
-            if(movie.isAvailable()){
-                System.out.printf("%-20s%-20s%s %s\n", movie.getTitle(), movie.getAuthor(), movie.getYear(), movie.getRating());
-            }
+    public String toString(){
+        String formatted = "";
 
+        for(Map.Entry<String, Item> each: super.items.entrySet() ) {
+            Movie movie = (Movie) each.getValue();
+            if (movie.isAvailable()) {
+                formatted += String.format("%-20s%-20s%s %s\n", movie.getTitle(), movie.getAuthor(), movie.getYear(), movie.getRating());
+
+            }
         }
 
-
+        return formatted;
     }
 }
