@@ -17,7 +17,9 @@ import static junit.framework.TestCase.assertTrue;
 public class CollectionTest {
     final PrintStream stdout = System.out;
     final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    BooksCollection books = new BooksCollection();
+    Users users = new Users();
+    BooksCollection books = new BooksCollection(users.getLibrary());
+    User current = users.findUser("123-4567");
 
     @Before
     public void setUp() throws Exception {
@@ -41,16 +43,16 @@ public class CollectionTest {
 
     @Test
     public void testCheckOut(){
-        assertTrue(books.checkOut("Bible"));
-        assertFalse(books.checkOut("Book of Mormon"));
+        assertTrue(books.checkOut("Bible", current));
+        assertFalse(books.checkOut("Book of Mormon", current));
 
     }
 
     @Test
     public void testReturnBook(){
-        books.checkOut("Bible");
-        assertTrue(books.returnItem("Bible"));
-        assertFalse(books.returnItem("Book of Mormon"));
+        books.checkOut("Bible", current);
+        assertTrue(books.returnItem("Bible", current));
+        assertFalse(books.returnItem("Book of Mormon", current));
     }
 
     @After

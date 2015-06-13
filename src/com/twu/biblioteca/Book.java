@@ -6,8 +6,8 @@ package com.twu.biblioteca;
 public class Book extends Item{
 
 
-    public Book(String title, String author, String year){
-        super(title, author, year);
+    public Book(String title, String author, String year, User owner){
+        super(title, author, year, owner);
     }
 
 }

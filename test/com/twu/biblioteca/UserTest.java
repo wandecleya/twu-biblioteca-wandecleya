@@ -9,7 +9,7 @@ import static junit.framework.TestCase.assertTrue;
  * Created by wmartins on 6/11/15.
  */
 public class UserTest {
-    User user = new User("Doe", "123-4567");
+    User user = new User("123-4567","1", "Camila", "e@r.c", "444-4444", "Normal");
 
     @Test
     public void testCheckPassword() {

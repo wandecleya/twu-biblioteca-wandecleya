@@ -15,7 +15,8 @@ import static junit.framework.TestCase.assertEquals;
 public class MoviesCollectionTest {
     final PrintStream stdout = System.out;
     final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    MoviesCollection movies = new MoviesCollection();
+    Users users = new Users();
+    MoviesCollection movies = new MoviesCollection(users.getLibrary());
 
     @Before
     public void setUp() throws Exception {

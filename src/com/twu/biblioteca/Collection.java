@@ -21,9 +21,11 @@ public class Collection {
         return false;
     }
 
-    public boolean checkOut(String title){
+    public boolean checkOut(String title, User current){
         if(isThere(title)){
-            findItem(title).setAvailable(false);
+            Item item = findItem(title);
+            item.setOwner(current);
+            item.setAvailable(false);
             return true;
         }
         return false;
@@ -35,9 +37,11 @@ public class Collection {
         return items.get(title);
     }
 
-    public boolean returnItem(String title){
+    public boolean returnItem(String title, User library){
         if(isThere(title)){
-            findItem(title).setAvailable(true);
+            Item item = findItem(title);
+            item.setOwner(library);
+            item.setAvailable(true);
             return true;
         }
 

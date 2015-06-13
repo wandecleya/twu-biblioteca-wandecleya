@@ -15,7 +15,8 @@ import static junit.framework.TestCase.assertEquals;
 public class BooksCollectionTest {
     final PrintStream stdout = System.out;
     final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    BooksCollection books = new BooksCollection();
+    Users users = new Users();
+    BooksCollection books = new BooksCollection(users.getLibrary());
     @Before
     public void setUp() throws Exception {
         System.setOut(new PrintStream(output, true, "UTF-8"));

@@ -14,10 +14,11 @@ public class InteractionsTest {
     final PrintStream stdout = System.out;
     final ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-    BooksCollection books = new BooksCollection();
-    MoviesCollection movies = new MoviesCollection();
-
     Users users = new Users();
+    BooksCollection books = new BooksCollection(users.getLibrary());
+    MoviesCollection movies = new MoviesCollection(users.getLibrary());
+
+
     Interactions interactions = new Interactions(books, movies, users);
 
     @Before
@@ -35,11 +36,11 @@ public class InteractionsTest {
     @Test
     public void testMenuUser(){
         interactions.menuUser();
-        assertEquals("USER MENU\n[1]Books List\n[2]Movies List\n[3]CheckOut Book\n[4]Return book\n[5]CheckOut Movie\n[6]Return Movie\n[7]Logout\n", output.toString());
+        assertEquals("USER MENU\n[1]Books List\n[2]Movies List\n[3]CheckOut Book\n[4]Return book\n[5]CheckOut Movie\n[6]Return Movie\n[7]My Profile\n[8]Logout\n", output.toString());
     }
     @Test
     public void testMenu(){
-        interactions.menu();
+        interactions.mainMenu();
         assertEquals("MENU\n[1]Books List\n[2]Movies List\n[3]Login\n[4]Quit\n", output.toString());
     }
 
@@ -61,9 +62,11 @@ public class InteractionsTest {
         assertEquals("Select a valid option!\n", output.toString());
     }
 
+
+
     @Test
-    public void testCheckOutMessage(){
-        interactions.checkOutMessage();
+    public void testQuestionMessage(){
+        interactions.questionMessage();
 
         assertEquals("What is the title?\n", output.toString());
     }

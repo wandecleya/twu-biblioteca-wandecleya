@@ -8,12 +8,14 @@ public class Item {
     private String author;
     private String year;
     private boolean available;
+    private User owner;
 
-    public Item (String title, String author, String year){
+    public Item (String title, String author, String year, User owner){
         this.title = title;
         this.author = author;
         this.year = year;
         available = true;
+        this.owner = owner;
     }
 
     public String getTitle(){
@@ -34,5 +36,14 @@ public class Item {
 
     public void setAvailable(boolean availability){
         available = availability;
+    }
+
+    public void setOwner (User owner){
+        this.owner = owner;
+    }
+
+    public String toString(){
+        String info = "Title: " + title + "\nAuthor: " + author + "\nYear: " + year + "\nOwner: \n" + owner.toString();
+        return info;
     }
 }

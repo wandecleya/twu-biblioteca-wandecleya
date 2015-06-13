@@ -12,17 +12,23 @@ public class Interactions {
     BooksCollection books;
     MoviesCollection movies;
     Users users;
-    User current;
+    User current;//Represents the user currently logged in
+    User library;
+
+    private final String MOVIE = "movie";
+    private final String BOOK = "book";
+    private final String NORMAL = "Normal";
+    private final String LIBRARIAN = "Librarian";
+
 
 
     public Interactions (BooksCollection books, MoviesCollection movies, Users users){
         this.books = books;
         this.movies = movies;
         this.users = users;
+        this.current = null;
+        library = users.getLibrary();
     }
-
-    private final String MOVIE = "movie";
-    private final String BOOK = "book";
 
 
     public void welcome(String message){
@@ -43,6 +49,7 @@ public class Interactions {
         System.out.println(textNumber);
         String number = in.next();
 
+        //Check if user has a valid registration number
         if(users.isThere(number)){
 
 
@@ -50,24 +57,41 @@ public class Interactions {
             String password = in.next();
             User user = users.findUser(number);
 
+            //Check if user entered a valid password
             if(user.checkPassword(password)){
                 current = users.findUser(number);
                 int option;
 
-                do{
-                    menuUser();
-                    option = in.nextInt();
-                    selectorMenuUser(option);
+                //Shows the Menu for logged users
+                //Regular User
+                if(current.getType().equals(NORMAL)) {
+                    do {
+                        menuUser();
+                        option = in.nextInt();
+                        selectorMenuUser(option);
 
 
-                } while((option != 7));
+                    } while ((option != 8));
+                }
+                //Librarian
+                else{
+                    do {
+                        menuLibrarian();
+                        option = in.nextInt();
+                        selectorMenuLibrarian(option);
+
+
+                    } while ((option != 9));
+                }
 
             }
+            //Wrong Password
             else{
                 System.out.println(textWrongPassword);
 
             }
         }
+        //Invalid Registration number
         else {
             System.out.println(textNotFound);
 
@@ -78,14 +102,18 @@ public class Interactions {
 
     }
 
-    public void menu (){
+    public void mainMenu (){
         String result = "MENU\n[1]Books List\n[2]Movies List\n[3]Login\n[4]Quit";
         System.out.println(result);
     }
 
     public void menuUser(){
-        String result= "USER MENU\n[1]Books List\n[2]Movies List\n[3]CheckOut Book\n[4]Return book\n[5]CheckOut Movie\n[6]Return Movie\n[7]Logout";
+        String result= "USER MENU\n[1]Books List\n[2]Movies List\n[3]CheckOut Book\n[4]Return book\n[5]CheckOut Movie\n[6]Return Movie\n[7]My Profile\n[8]Logout";
+        System.out.println(result);
+    }
 
+    public void menuLibrarian(){
+        String result= "LIBRARIAN MENU\n[1]Books List\n[2]Movies List\n[3]CheckOut Book\n[4]Return book\n[5]CheckOut Movie\n[6]Return Movie\n[7]Movie Details\n[8]Book Details\n[9]Logout";
         System.out.println(result);
     }
 
@@ -122,17 +150,56 @@ public class Interactions {
                 break;
             case 6: returnInteraction(movies, MOVIE);
                 break;
-            case 7: logout();
+            case 7: System.out.println(current.toString());
+                break;
+            case 8: logout();
                 break;
             default: System.out.println("Select a valid option!");
 
         }
     }
 
+    public void selectorMenuLibrarian(int option){
+        switch (option){
+            case 1: books.print();
+                break;
+            case 2: movies.print();
+                break;
+            case 3: checkOutInteraction(books, BOOK);
+                break;
+            case 4: returnInteraction(books, BOOK);
+                break;
+            case 5: checkOutInteraction(movies, MOVIE);
+                break;
+            case 6: returnInteraction(movies, MOVIE);
+                break;
+            case 7: showInteraction(movies);
+                break;
+            case 8: showInteraction(books);
+                break;
+            case 9: logout();
+                break;
+            default: System.out.println("Select a valid option!");
+
+        }
+    }
+
+    public void showInteraction(Collection item){
+        questionMessage();
+        in.nextLine();
+        String name = in.nextLine();
+
+        String details = item.findItem(name).toString();
+
+        System.out.println(details);
+
+    }
     public void returnInteraction (Collection item, String type){
-        checkOutMessage();
-        String name = in.next();
-        if(item.returnItem(name)){
+        questionMessage();
+        in.nextLine();
+        String name = in.nextLine();
+
+        if(item.returnItem(name, library)){
             System.out.println("Thank you for returning the " + type);
         }
         else {
@@ -140,17 +207,17 @@ public class Interactions {
         }
     }
 
-    public void checkOutMessage(){
+    public void questionMessage(){
         String result = "What is the title?";
         System.out.println(result);
     }
 
 
     public void checkOutInteraction(Collection item, String type){
-        checkOutMessage();
+        questionMessage();
         in.nextLine();
         String name = in.nextLine();
-        if(item.checkOut(name)){
+        if(item.checkOut(name, current)){
             System.out.println("Thank you! Enjoy the " + type);
         }
         else{

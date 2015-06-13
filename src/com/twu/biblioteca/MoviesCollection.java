@@ -9,10 +9,10 @@ public class MoviesCollection extends Collection {
 
 
 
-    public MoviesCollection (){
+    public MoviesCollection (User owner){
         super();
-        super.items.put("Matrix", new Movie("Matrix","Wacowskis", "1999"));
-        super.items.put("Fight Club", new Movie("Fight Club", "David Fincher", "1999"));
+        super.items.put("Matrix", new Movie("Matrix","Wacowskis", "1999", owner));
+        super.items.put("Fight Club", new Movie("Fight Club", "David Fincher", "1999", owner));
     }
 
     public void print(){

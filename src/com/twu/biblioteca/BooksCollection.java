@@ -8,10 +8,10 @@ import java.util.*;
 public class BooksCollection extends Collection {
 
 
-    public BooksCollection(){
+    public BooksCollection(User owner){
         super();
-        super.items.put("Bible", new Book ("Bible","Jesus","0"));
-        super.items.put("Neuromancer", new Book ("Neuromancer","Willian Gibson","1980"));
+        super.items.put("Bible", new Book ("Bible","Jesus","0", owner));
+        super.items.put("Neuromancer", new Book ("Neuromancer","Willian Gibson","1980", owner));
     }
 
     public void print(){
