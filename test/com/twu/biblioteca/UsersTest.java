@@ -12,8 +12,8 @@ public class UsersTest {
     Users users = new Users();
     @Test
     public void testIsThere(){
-        assertTrue(users.isThere("1"));
-        assertFalse(users.isThere("5"));
+        assertTrue(users.isResgistrationNumberValid("1"));
+        assertFalse(users.isResgistrationNumberValid("5"));
 
     }
 }

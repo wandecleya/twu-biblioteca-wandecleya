@@ -18,7 +18,7 @@ public class BibliotecaApp {
         int option;
 
         do{
-            System.out.println(interactions.MAINMENU);
+            System.out.println(interactions.MAIN_MENU);
             option = in.nextInt();
             interactions.selectorMenu(option);
 

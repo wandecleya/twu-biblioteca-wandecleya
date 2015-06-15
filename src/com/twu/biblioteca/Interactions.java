@@ -19,25 +19,23 @@ public class Interactions {
     private final String MOVIE = "movie";
     private final String BOOK = "book";
 
-    private final String NORMAL = "Normal";
-
     public final String WELCOME = "*Welcome to Biblioteca*";
 
-    private final String REGISTRATION = "Type your registration number:";
-    private final String PASSWORD = "Type your password:";
-    private final String NOTFOUND = "User not existent";
-    private final String WRONGPASSWORD = "Wrong Password";
-    private final String INVALIDOPTION = "Select a valid option!";
+    private final String GET_REGISTRATION_NUMBER = "Type your registration number:";
+    private final String GET_PASSWORD = "Type your password:";
+    private final String USER_NOT_FOUND = "User not existent";
+    private final String WRONG_PASSWORD = "Wrong Password";
+    private final String INVALID_OPTION = "Select a valid option!";
     private final String EXIT= "Thank you, bye!";
-    private final String ASKTITLE= "What is the title?";
+    private final String ASK_TITLE= "What is the title?";
 
-    public final String MAINMENU = "MENU\n" +
+    public final String MAIN_MENU = "MENU\n" +
             "[1]Books List\n" +
             "[2]Movies List\n" +
             "[3]Login\n" +
             "[4]Quit\n";
 
-    public final String LIBRARIANMENU = "LIBRARIAN MENU\n" +
+    public final String LIBRARIAN_MENU = "LIBRARIAN MENU\n" +
             "[1]Books List\n" +
             "[2]Movies List\n" +
             "[3]CheckOut Book\n" +
@@ -48,7 +46,7 @@ public class Interactions {
             "[8]Book Details\n" +
             "[9]Logout\n";
 
-    public final String USERMENU = "USER MENU\n" +
+    public final String USER_MENU = "USER MENU\n" +
             "[1]Books List\n" +
             "[2]Movies List\n" +
             "[3]CheckOut Book\n" +
@@ -71,39 +69,38 @@ public class Interactions {
         System.out.println(WELCOME.toUpperCase() + "\n");
     }
 
+    private String question (String message){
+        System.out.println(message);
+        String input = in.nextLine();
+        return input;
+    }
+
     public void login(){
 
-        System.out.println(REGISTRATION);
-        String number = in.next();
+        String registration_number = question(GET_REGISTRATION_NUMBER);
 
-        //Check if user has a valid registration number
-        if(users.isThere(number)){
+        if(users.isResgistrationNumberValid(registration_number)){
 
-            System.out.println(PASSWORD);
-            String password = in.next();
-            User user = users.findUser(number);
+            String password = question(GET_PASSWORD);
+            User user = users.findUser(registration_number);
 
-            //Check if user entered a valid password
             if(user.checkPassword(password)){
-                currentUser = users.findUser(number);
-                int option;
 
-                //Shows the Menu for logged users
-                //Regular User
-                if(currentUser.getType().equals(NORMAL)) {
+                currentUser = users.findUser(registration_number);
+                int option;
+                if(currentUser.isRegularUser()) {
                     do {
 
-                        System.out.println(USERMENU);
+                        System.out.println(USER_MENU);
                         option = in.nextInt();
                         selectorMenuUser(option);
 
 
                     } while ((option != 8));
                 }
-                //Librarian
                 else{
                     do {
-                        System.out.println(LIBRARIANMENU);
+                        System.out.println(LIBRARIAN_MENU);
                         option = in.nextInt();
                         selectorMenuLibrarian(option);
 
@@ -111,15 +108,14 @@ public class Interactions {
                 }
 
             }
-            //Wrong Password
+
             else{
-                System.out.println(WRONGPASSWORD);
+                System.out.println(WRONG_PASSWORD);
 
             }
         }
-        //Invalid Registration number
         else {
-            System.out.println(NOTFOUND);
+            System.out.println(USER_NOT_FOUND);
 
         }
 
@@ -127,7 +123,7 @@ public class Interactions {
 
 
 
-    public void logout(){
+    private void logout(){
         currentUser = null;
     }
 
@@ -141,7 +137,7 @@ public class Interactions {
                 break;
             case 4: System.out.println(EXIT);
                 break;
-            default: System.out.println(INVALIDOPTION);
+            default: System.out.println(INVALID_OPTION);
 
         }
     }
@@ -164,14 +160,14 @@ public class Interactions {
                 break;
             case 8: logout();
                 break;
-            default: System.out.println(INVALIDOPTION);
+            default: System.out.println(INVALID_OPTION);
 
         }
     }
 
     public void selectorMenuLibrarian(int option){
         switch (option){
-            case 1: System.out.println(movies.toString());
+            case 1: System.out.println(books.toString());
                 break;
             case 2: System.out.println(movies.toString());
                 break;
@@ -189,14 +185,14 @@ public class Interactions {
                 break;
             case 9: logout();
                 break;
-            default: System.out.println(INVALIDOPTION);
+            default: System.out.println(INVALID_OPTION);
 
         }
     }
 
     public void showInteraction(Collection item){
 
-        System.out.println(ASKTITLE);
+        System.out.println(ASK_TITLE);
         in.nextLine();
         String name = in.nextLine();
 
@@ -208,7 +204,7 @@ public class Interactions {
 
     public void returnInteraction (Collection item, String type){
 
-        System.out.println(ASKTITLE);
+        System.out.println(ASK_TITLE);
         in.nextLine();
         String name = in.nextLine();
 
@@ -224,7 +220,7 @@ public class Interactions {
 
     public void checkOutInteraction(Collection item, String type){
 
-        System.out.println(ASKTITLE);
+        System.out.println(ASK_TITLE);
         in.nextLine();
         String name = in.nextLine();
 

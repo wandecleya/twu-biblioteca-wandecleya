@@ -18,7 +18,7 @@ public class Users {
         list.put("111-1111", new User("111-1111","2", "Bibliotecaria", "r@.c", "333-3333", LIBRARIAN));
     }
 
-    public boolean isThere(String registration){
+    public boolean isResgistrationNumberValid(String registration){
         if(list.containsKey(registration)){
             return true;
         }

@@ -11,6 +11,8 @@ public class User {
     private String email;
     private String phone;
 
+    private final String NORMAL = "Normal";
+
     public User (){
         password = "";
         registration = "";
@@ -38,8 +40,11 @@ public class User {
         return false;
     }
 
-    public String getType(){
-        return type;
+    public boolean isRegularUser(){
+            if(type.equals(NORMAL)){
+                return true;
+            }
+        return false;
     }
 
     public String toString(){
