@@ -1,4 +1,8 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.service;
+
+import com.twu.biblioteca.Item;
+import com.twu.biblioteca.Movie;
+import com.twu.biblioteca.User;
 
 import java.util.Map;
 

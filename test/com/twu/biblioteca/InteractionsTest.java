@@ -1,6 +1,9 @@
 package com.twu.biblioteca;
 
 
+import com.twu.biblioteca.service.BooksCollection;
+import com.twu.biblioteca.service.MoviesCollection;
+import com.twu.biblioteca.service.Users;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,15 +29,11 @@ public class InteractionsTest {
         System.setOut(new PrintStream(output, true, "UTF-8"));
     }
 
-
     @Test
     public void testWelcome() {
         interactions.welcome();
-        assertEquals(interactions.WELCOME, output.toString());
+        assertEquals(interactions.WELCOME.toUpperCase()+"\n\n", output.toString());
     }
-
-
-
 
     @Test
     public void testSelectorQuit() {
@@ -53,12 +52,6 @@ public class InteractionsTest {
         interactions.selectorMenuUser(10);
         assertEquals("Select a valid option!\n", output.toString());
     }
-
-
-
-
-
-
 
     @After
     public void tearDown() throws Exception {

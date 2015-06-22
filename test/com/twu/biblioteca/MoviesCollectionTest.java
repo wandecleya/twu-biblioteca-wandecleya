@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.service.MoviesCollection;
+import com.twu.biblioteca.service.Users;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
