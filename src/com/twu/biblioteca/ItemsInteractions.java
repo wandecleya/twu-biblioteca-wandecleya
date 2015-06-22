@@ -14,7 +14,7 @@ public class ItemsInteractions {
     public void showInteraction(Collection item){
 
         System.out.println(ASK_TITLE);
-        in.nextLine();
+
         String name = in.nextLine();
 
         String itemDetails = item.findItem(name).toString();
@@ -40,7 +40,7 @@ public class ItemsInteractions {
     public void returnInteraction(Collection item, String type, User libraryUser){
 
         System.out.println(ItemsInteractions.ASK_TITLE);
-        in.nextLine();
+
         String name = in.nextLine();
 
         if(item.returnItem(name, libraryUser)){
