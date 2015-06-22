@@ -9,9 +9,10 @@ import java.util.Scanner;
  */
 public class ItemsInteractions {
     static final String ASK_TITLE= "What is the title?";
+    Scanner in = new Scanner(System.in);
 
     public void showInteraction(Collection item){
-        Scanner in = new Scanner(System.in);
+
         System.out.println(ASK_TITLE);
         in.nextLine();
         String name = in.nextLine();
@@ -23,7 +24,7 @@ public class ItemsInteractions {
     }
 
     public void checkOut(Collection item, String type, User currentUser){
-        Scanner in = new Scanner(System.in);
+
         System.out.println(ASK_TITLE);
         in.nextLine();
         String name = in.nextLine();
@@ -37,7 +38,7 @@ public class ItemsInteractions {
     }
 
     public void returnInteraction(Collection item, String type, User libraryUser){
-        Scanner in = new Scanner(System.in);
+
         System.out.println(ItemsInteractions.ASK_TITLE);
         in.nextLine();
         String name = in.nextLine();
