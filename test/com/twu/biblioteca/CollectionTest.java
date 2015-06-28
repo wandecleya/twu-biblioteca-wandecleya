@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.controller.User;
 import com.twu.biblioteca.service.BooksCollection;
 import com.twu.biblioteca.service.Users;
 import org.junit.After;

@@ -1,5 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.view;
 
+import com.twu.biblioteca.controller.User;
 import com.twu.biblioteca.service.BooksCollection;
 import com.twu.biblioteca.service.MoviesCollection;
 import com.twu.biblioteca.service.Users;
@@ -17,11 +18,9 @@ public class Interactions {
     MoviesCollection movies;
     private UserInteractions userInteractions;
 
-
-
     private ItemsInteractions itemsInteractions = new ItemsInteractions();
-    User currentUser;//Represents the user currently logged in
-    User libraryUser;//This user represents the Biblioteca
+    User currentUser;
+    User libraryUser;
 
     private final String MOVIE = "movie";
     private final String BOOK = "book";

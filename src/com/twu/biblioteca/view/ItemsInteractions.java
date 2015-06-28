@@ -1,5 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.view;
 
+import com.twu.biblioteca.controller.User;
 import com.twu.biblioteca.service.Collection;
 
 import java.util.Scanner;

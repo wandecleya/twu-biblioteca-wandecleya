@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.controller.User;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertFalse;

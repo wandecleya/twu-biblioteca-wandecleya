@@ -1,7 +1,7 @@
 package com.twu.biblioteca.service;
 
-import com.twu.biblioteca.Item;
-import com.twu.biblioteca.User;
+import com.twu.biblioteca.controller.Item;
+import com.twu.biblioteca.controller.User;
 
 import java.util.HashMap;
 

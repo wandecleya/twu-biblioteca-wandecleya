@@ -1,6 +1,8 @@
 package com.twu.biblioteca.service;
 
-import com.twu.biblioteca.*;
+import com.twu.biblioteca.controller.Book;
+import com.twu.biblioteca.controller.Item;
+import com.twu.biblioteca.controller.User;
 
 import java.util.*;
 
@@ -12,7 +14,7 @@ public class BooksCollection extends Collection {
 
     public BooksCollection(User owner){
         super(owner);
-        super.items.put("Bible", new Book ("Bible","Jesus","0", owner));
+        super.items.put("Bible", new Book("Bible","Jesus","0", owner));
         super.items.put("Neuromancer", new Book ("Neuromancer","Willian Gibson","1980", owner));
     }
 

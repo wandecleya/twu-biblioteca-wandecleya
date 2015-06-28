@@ -4,6 +4,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.service.BooksCollection;
 import com.twu.biblioteca.service.MoviesCollection;
 import com.twu.biblioteca.service.Users;
+import com.twu.biblioteca.view.Interactions;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
