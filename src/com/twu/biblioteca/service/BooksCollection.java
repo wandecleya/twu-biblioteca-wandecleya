@@ -14,8 +14,8 @@ public class BooksCollection extends Collection {
 
     public BooksCollection(User owner){
         super(owner);
-        super.items.put("Bible", new Book("Bible","Jesus","0", owner));
-        super.items.put("Neuromancer", new Book ("Neuromancer","Willian Gibson","1980", owner));
+        super.items.put("bible", new Book("Bible","Jesus","0", owner));
+        super.items.put("neuromancer", new Book ("Neuromancer","Willian Gibson","1980", owner));
     }
 
     public String toString(){

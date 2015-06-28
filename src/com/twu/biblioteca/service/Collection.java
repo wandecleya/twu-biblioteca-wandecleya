@@ -20,7 +20,7 @@ public class Collection {
     }
 
     public boolean isThere(String title){
-        if(items.containsKey(title)){
+        if(items.containsKey(title.toLowerCase())){
             return true;
         }
         return false;
@@ -40,7 +40,7 @@ public class Collection {
 
 
     public Item findItem(String title){
-        return items.get(title);
+        return items.get(title.toLowerCase());
     }
 
     public boolean returnItem(String title){
