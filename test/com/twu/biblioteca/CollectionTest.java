@@ -54,8 +54,8 @@ public class CollectionTest {
     @Test
     public void testReturnBook(){
         books.checkOut("Bible", current);
-        assertTrue(books.returnItem("Bible", current));
-        assertFalse(books.returnItem("Book of Mormon", current));
+        assertTrue(books.returnItem("Bible"));
+        assertFalse(books.returnItem("Book of Mormon"));
     }
 
     @After

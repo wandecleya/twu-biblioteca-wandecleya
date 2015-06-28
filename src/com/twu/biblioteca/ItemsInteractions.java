@@ -26,10 +26,12 @@ public class ItemsInteractions {
     public void checkOut(Collection item, String type, User currentUser){
 
         System.out.println(ASK_TITLE);
+
         String name = in.nextLine();
 
-        if (!item.isThere(name)) {
+        if (item.isThere(name)) {
             item.checkOut(name, currentUser);
+
             System.out.println("Thank you! Enjoy the " + type);
         } else{
             System.out.println("That " + type + " is not available");
@@ -42,7 +44,7 @@ public class ItemsInteractions {
 
         String name = in.nextLine();
 
-        if(item.returnItem(name, libraryUser)){
+        if(item.returnItem(name)){
             System.out.println("Thank you for returning the " + type);
         }
         else {

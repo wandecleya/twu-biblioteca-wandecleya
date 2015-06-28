@@ -11,10 +11,12 @@ import java.util.HashMap;
  */
 public class Collection {
     HashMap<String, Item> items;
+    User owner;
 
 
-    public Collection (){
+    public Collection (User owner){
         items = new HashMap<String, Item>();
+        this.owner = owner;
     }
 
     public boolean isThere(String title){
@@ -25,6 +27,7 @@ public class Collection {
     }
 
     public boolean checkOut(String title, User current){
+
         if(isThere(title)){
             Item item = findItem(title);
             item.setOwner(current);
@@ -40,10 +43,10 @@ public class Collection {
         return items.get(title);
     }
 
-    public boolean returnItem(String title, User library){
+    public boolean returnItem(String title){
         if(isThere(title)){
             Item item = findItem(title);
-            item.setOwner(library);
+            item.setOwner(owner);
             item.setAvailable(true);
             return true;
         }

@@ -14,7 +14,7 @@ public class MoviesCollection extends Collection {
 
 
     public MoviesCollection (User owner){
-        super();
+        super(owner);
         super.items.put("Matrix", new Movie("Matrix","Wacowskis", "1999", owner));
         super.items.put("Fight Club", new Movie("Fight Club", "David Fincher", "1999", owner));
     }
