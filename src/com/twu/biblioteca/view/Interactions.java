@@ -14,13 +14,13 @@ public class Interactions {
 
     Scanner in = new Scanner(System.in);
 
-    BooksCollection books;
-    MoviesCollection movies;
+    private BooksCollection books;
+    private MoviesCollection movies;
     private UserInteractions userInteractions;
 
     private ItemsInteractions itemsInteractions = new ItemsInteractions();
-    User currentUser;
-    User libraryUser;
+    private User currentUser;
+    private User libraryUser;
 
     private final String MOVIE = "movie";
     private final String BOOK = "book";
