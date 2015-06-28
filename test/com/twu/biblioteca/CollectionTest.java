@@ -32,12 +32,7 @@ public class CollectionTest {
     }
 
 
-    @Test
-    public void testIsThere(){
-        assertTrue(books.isThere("Bible"));
 
-        assertFalse(books.isThere("Book of Mormon"));
-    }
 
     @Test
     public void testFindBook(){

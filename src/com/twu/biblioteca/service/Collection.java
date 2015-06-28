@@ -19,7 +19,7 @@ public class Collection {
         this.owner = owner;
     }
 
-    public boolean isThere(String title){
+    private boolean isThere(String title){
         if(items.containsKey(title.toLowerCase())){
             return true;
         }

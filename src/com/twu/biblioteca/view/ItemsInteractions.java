@@ -30,8 +30,8 @@ public class ItemsInteractions {
 
         String name = in.nextLine();
 
-        if (item.isThere(name)) {
-            item.checkOut(name, currentUser);
+        if (item.checkOut(name, currentUser)) {
+
 
             System.out.println("Thank you! Enjoy the " + type);
         } else{
